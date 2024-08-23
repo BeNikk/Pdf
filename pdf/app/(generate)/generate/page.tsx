@@ -49,6 +49,11 @@ export default function ExperimentGenerator() {
                 margin: 0;
                 padding: 0;
               }
+              #experiment{
+              text-align: center;
+              margin:0;
+              padding-bottom:10px;
+              }
 
               #printableArea {
                 background-color: #fff; /* Background color for printable area */
@@ -110,7 +115,7 @@ export default function ExperimentGenerator() {
 
       {result && (
         <div id="printableArea" className="mt-8 w-full max-w-2xl p-6 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold mb-4 text-center">Experiment</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center" id="experiment">Experiment</h2>
           
           {/* Aim Section */}
           <div className="mb-4">
