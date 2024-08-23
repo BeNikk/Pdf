@@ -11,7 +11,7 @@ const Navbar = () => {
             <div>
                 <a href="/">
                 <h1 className="font-medium text-sm">
-                    PDF
+                    PlayPdf
                 </h1>
                 </a>
             </div>
@@ -20,6 +20,8 @@ const Navbar = () => {
                 <Star className="w-5 h-5"/>
                 </Link>
             </div>
+
+           
 
         </div>
      );
