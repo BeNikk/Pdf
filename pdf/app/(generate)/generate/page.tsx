@@ -103,7 +103,7 @@ export default function ExperimentGenerator() {
       <div className="mx-2 w-full max-w-lg hide-print">
         <input
           type="text"
-          className="mx-1 w-[80vw] p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="ml-4 w-[90%] text-center p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter the aim of your experiment..."
           value={aim}
           onChange={(e) => setAim(e.target.value)}
