@@ -100,10 +100,10 @@ export default function ExperimentGenerator() {
   return (
     <div className="mt-20 flex flex-col items-center gap-6 justify-center">
       {loading && <Loader/>}
-      <div className="w-full max-w-lg hide-print">
+      <div className="mx-2 w-full max-w-lg hide-print">
         <input
           type="text"
-          className="mx-4 w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mx-1 w-[80vw] p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter the aim of your experiment..."
           value={aim}
           onChange={(e) => setAim(e.target.value)}
@@ -150,7 +150,7 @@ export default function ExperimentGenerator() {
           {/* Code Section */}
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Code:</h3>
-            <pre className="bg-gray-100 p-4 rounded overflow-hidden">
+            <pre className="bg-gray-100 p-4 rounded overflow-auto">
               <code>{result.fullCode}</code>
             </pre>
           </div>
