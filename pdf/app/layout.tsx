@@ -3,13 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { GeistSans } from 'geist/font/sans';
-
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "PlayPdf",
   description: "create practical files easily",
-  
+
   
 };
 
@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
+        <Analytics/>
         <main className="flex flex-col">
         <Navbar/>
         {children}

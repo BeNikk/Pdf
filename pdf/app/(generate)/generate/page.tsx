@@ -46,7 +46,7 @@ export default function ExperimentGenerator() {
     <div className="mt-20 flex flex-col items-center gap-6 justify-center">
         {loading && <Loader/>}
 
-      <div className="w-full max-w-lg">
+      <div className="w-full noprint max-w-lg">
         <input
           type="text"
           className="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -55,7 +55,7 @@ export default function ExperimentGenerator() {
           onChange={(e) => setAim(e.target.value)}
         />
       </div>
-      <Button className="rounded-full" onClick={handleGenerate}>
+      <Button className="noprint rounded-full" onClick={handleGenerate}>
         Generate <ArrowUpRight />
       </Button>
 
@@ -110,10 +110,13 @@ export default function ExperimentGenerator() {
               ))}
             </ul>
           </div>
+          <div className="noprint">
 
           <Button className="mt-6 rounded-full" onClick={handlePrint}>
             Print as PDF
           </Button>
+
+          </div>
         </div>
       )}
     </div>
