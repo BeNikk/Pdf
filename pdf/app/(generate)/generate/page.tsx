@@ -7,7 +7,7 @@ import Loader from "@/components/Loader";
 export default function ExperimentGenerator() {
   const [aim, setAim] = useState("");
   const [result, setResult] = useState<any>(null);
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
     try {
@@ -25,10 +25,9 @@ export default function ExperimentGenerator() {
         setResult(data.practicalFile);
         
     } catch (error) {
-        console.log(error);
-        setLoading(false);
+        console.log("error");
         
-    }finally{
+    } finally {
         setLoading(false);
     }
   };
@@ -37,25 +36,75 @@ export default function ExperimentGenerator() {
     const printContents = document.getElementById('printableArea')!.innerHTML;
     const originalContents = document.body.innerHTML;
 
-    document.body.innerHTML = printContents;
-    window.print();
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow!.document.open();
+    printWindow!.document.write(`
+      <html>
+        <head>
+          <style>
+            @media print {
+              body {
+                background-color: #f0f0f0; /* Background color for the entire page */
+                color: #000; /* Text color for readability */
+                margin: 0;
+                padding: 0;
+              }
+
+              #printableArea {
+                background-color: #fff; /* Background color for printable area */
+                padding: 20px; /* Optional padding for the printable area */
+                margin: 20px auto; /* Center the printable area horizontally */
+                width: 80%; /* Adjust width to fit well on the page */
+                max-width: 800px; /* Maximum width to prevent excessive stretching */
+                box-sizing: border-box;
+                border: 1px solid #ddd; /* Border for better visibility */
+                border-radius: 8px; /* Optional rounded corners */
+              }
+
+              .hide-print {
+                display: none; /* Hide elements that should not be printed */
+              }
+
+              pre {
+                white-space: pre-wrap; /* Ensure code wraps */
+                word-wrap: break-word; /* Handle long lines */
+                background-color: #f7f7f7; /* Background color for the code area */
+                padding: 10px; /* Optional padding */
+                border: 1px solid #ddd; /* Border for better visibility */
+                overflow: hidden; /* Hide overflow to avoid scrollbars */
+              }
+
+              @page {
+                size: auto;
+                margin: 20mm; /* Margin for printed pages */
+              }
+            }
+          </style>
+        </head>
+        <body>
+          ${printContents}
+        </body>
+      </html>
+    `);
+    printWindow!.document.close();
+    printWindow!.focus();
+    printWindow!.print();
     document.body.innerHTML = originalContents;
   };
 
   return (
     <div className="mt-20 flex flex-col items-center gap-6 justify-center">
-        {loading && <Loader/>}
-
-      <div className="w-full noprint max-w-lg">
+      {loading && <Loader/>}
+      <div className="w-full max-w-lg hide-print">
         <input
           type="text"
-          className="w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mx-4 w-full p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter the aim of your experiment..."
           value={aim}
           onChange={(e) => setAim(e.target.value)}
         />
       </div>
-      <Button className="noprint rounded-full" onClick={handleGenerate}>
+      <Button className="rounded-full hide-print" onClick={handleGenerate}>
         Generate <ArrowUpRight />
       </Button>
 
@@ -96,7 +145,7 @@ export default function ExperimentGenerator() {
           {/* Code Section */}
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Code:</h3>
-            <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
+            <pre className="bg-gray-100 p-4 rounded overflow-hidden">
               <code>{result.fullCode}</code>
             </pre>
           </div>
@@ -105,18 +154,15 @@ export default function ExperimentGenerator() {
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Viva Questions:</h3>
             <ul className="list-disc pl-5">
-              {result.VivaQuestionsWithAnswers.map((qa:any, index:number) => (
+              {result.VivaQuestionsWithAnswers.map((qa:any, index:any) => (
                 <li key={index} className="mb-2">{qa}</li>
               ))}
             </ul>
           </div>
-          <div className="noprint">
 
-          <Button className="mt-6 rounded-full" onClick={handlePrint}>
+          <Button className="mt-6 rounded-full hide-print" onClick={handlePrint}>
             Print as PDF
           </Button>
-
-          </div>
         </div>
       )}
     </div>
