@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import { GeistSans } from 'geist/font/sans';
 
@@ -18,7 +17,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
     <html lang="en">
       <body className={GeistSans.className}>
         <main className="flex flex-col">
@@ -27,6 +25,5 @@ export default function RootLayout({
         </main>
         </body>
     </html>
-    </ClerkProvider>
   );
 }

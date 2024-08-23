@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+  /* Hide elements that shouldn't be printed */
+  .no-print {
+    display: none;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style adjustments for printing */
+  #printableArea {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
