@@ -151,7 +151,7 @@ export default function ExperimentGenerator() {
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Code:</h3>
             <pre className="bg-gray-100 p-4 rounded overflow-auto">
-              <code>{result.fullCode}</code>
+              <code>{result.OptimisedCodeWithUserInput}</code>
             </pre>
           </div>
           

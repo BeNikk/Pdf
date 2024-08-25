@@ -20,13 +20,14 @@ export async function POST(req:Request){
                   
                   FullAlgorithmExplainInSteps: z.array(z.string()),
               
-                  fullCode: z.string(),
+                  OptimisedCodeWithUserInput: z.string(),
                   VivaQuestionsWithAnswers:z.array(z.string())
                 }),
 
               }),
             prompt: prompt,
           });
+          
 
           return NextResponse.json(object);
         
